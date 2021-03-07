@@ -3,18 +3,18 @@ import java.util.*;
 
 @SuppressWarnings("unused")
 
-/* ÇÁ·Î±×·¥ ÀÌ¸§ : Person.java
-ÇÁ·Î±×·¥ ¼³¸í : Å¬·¡½º Person Á¤ÀÇ ÇÁ·Î±×·¥
-ÀÛ¼ºÀÏ : 2020-10-10
-ÀÛ¼ºÀÚ :  Jeong JiYeon*/
+/* í”„ë¡œê·¸ë¨ ì´ë¦„ : Person.java
+í”„ë¡œê·¸ë¨ ì„¤ëª… : í´ë˜ìŠ¤ Person ì •ì˜ í”„ë¡œê·¸ë¨
+ì‘ì„±ì¼ : 2021-03-05
+ì‘ì„±ì :  Jeong JiYeon*/
 
-public class Person { // Person Å¬·¡½º
+public class Person { // Person í´ë˜ìŠ¤
 	
-	private String name;		 // ÀÌ¸§ ÇÊµå
-	private String sex;			 // ¼ºº° ÇÊµå
-	private String phoneNum;	 // ÀüÈ­¹øÈ£ ÇÊµå
-	private String address;	 	 // ÁıÁÖ¼Ò ÇÊµå
-	private String email;		 // ÀÌ¸ŞÀÏ ÇÊµå
+	private String name;		 // ì´ë¦„ í•„ë“œ
+	private String sex;			 // ì„±ë³„ í•„ë“œ
+	private String phoneNum;	 // ì „í™”ë²ˆí˜¸ í•„ë“œ
+	private String address;	 	 // ì§‘ì£¼ì†Œ í•„ë“œ
+	private String email;		 // ì´ë©”ì¼ í•„ë“œ
 
 	public Person(String name, String phoneNum,  String address, String email, String sex){ 
 		this.name = name;
@@ -31,34 +31,34 @@ public class Person { // Person Å¬·¡½º
 		this.email = null;
 	}
 	
-	public void setName(String name){ 		// ÀÌ¸§ ¼³Á¤ÀÚ
+	public void setName(String name){ 		// ì´ë¦„ ì„¤ì •ì
 		this.name = name;
 	}
-	public void setSex(String sex){			// ¼ºº° ¼³Á¤ÀÚ
+	public void setSex(String sex){			// ì„±ë³„ ì„¤ì •ì
 		this.sex = sex;
 	}
-	public void setPhoneNum(String phoneNum){ 	// ÀüÈ­¹øÈ£ ¼³Á¤ÀÚ
+	public void setPhoneNum(String phoneNum){ 	// ì „í™”ë²ˆí˜¸ ì„¤ì •ì
 		this.phoneNum = phoneNum;
 	}
-	public void setAddress(String address){ 	// ÁıÁÖ¼Ò ¼³Á¤ÀÚ
+	public void setAddress(String address){ 	// ì§‘ì£¼ì†Œ ì„¤ì •ì
 		this.address = address;
 	}
-	public void setEmail(String email){ 		// ÀÌ¸ŞÀÏ ¼³Á¤ÀÚ
+	public void setEmail(String email){ 		// ì´ë©”ì¼ ì„¤ì •ì
 		this.email = email;
 	}
-	public String getName(){ 			// ÀÌ¸§ Á¢±ÙÀÚ
+	public String getName(){ 			// ì´ë¦„ ì ‘ê·¼ì
 		return name;
 	}
-	public String getSex(){ 			// ¼ºº° Á¢±ÙÀÚ
+	public String getSex(){ 			// ì„±ë³„ ì ‘ê·¼ì
 		return sex;
 	}
-	public String getPhoneNum(){ 		// ÀüÈ­¹øÈ£ Á¢±ÙÀÚ
+	public String getPhoneNum(){ 		// ì „í™”ë²ˆí˜¸ ì ‘ê·¼ì
 		return phoneNum;
 	}
-	public String getAddress(){ 		// ÁıÁÖ¼Ò Á¢±ÙÀÚ
+	public String getAddress(){ 		// ì§‘ì£¼ì†Œ ì ‘ê·¼ì
 		return address;
 	}
-	public String getEmail(){ 			// ÀÌ¸ŞÀÏ Á¢±ÙÀÚ
+	public String getEmail(){ 			// ì´ë©”ì¼ ì ‘ê·¼ì
 		return email;
 	}
 	
