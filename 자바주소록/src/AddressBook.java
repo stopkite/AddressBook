@@ -1,13 +1,13 @@
 import java.io.*;
-import java.util.ArrayList; // ArrayList¸¦ »ç¿ëÇÏ±â À§ÇÑ import
+import java.util.ArrayList; // ArrayListë¥¼ ì‚¬ìš©í•˜ê¸° ìœ„í•œ import
 import java.sql.*;
 
 @SuppressWarnings("unused")
 
-/*
- * ÇÁ·Î±×·¥ ÀÌ¸§ : AddressBook.java ÇÁ·Î±×·¥ ¼³¸í : Å¬·¡½º AddressBook Á¤ÀÇ ÇÁ·Î±×·¥ ÀÛ¼ºÀÏ : 2020-11-29
- * ÀÛ¼ºÀÚ : Jeong JiYeon
- */
+/* í”„ë¡œê·¸ë¨ ì´ë¦„ : AddressBook.java
+í”„ë¡œê·¸ë¨ ì„¤ëª… : í´ë˜ìŠ¤ AddressBook ì •ì˜ í”„ë¡œê·¸ë¨
+ì‘ì„±ì¼ : 2021-03-05
+ì‘ì„±ì :  Jeong JiYeon*/
 
 public class AddressBook {
 
@@ -15,87 +15,87 @@ public class AddressBook {
 	private Statement st;
 	private ResultSet rs;
 
-	// »ı¼ºÀÚ ÇÔ¼ö
+	// ìƒì„±ì í•¨ìˆ˜
 	public AddressBook() throws ClassNotFoundException, SQLException {
 
-		Class.forName("org.mariadb.jdbc.Driver"); // JDBC µå¶óÀÌ¹ö ¿¬°á
+		Class.forName("org.mariadb.jdbc.Driver"); // JDBC ë“œë¼ì´ë²„ ì—°ê²°
 		conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/adressdb", "root", "swu");
 		st = conn.createStatement();
 	}
 
-	// µî·ÏµÈ »ç¶÷ ¼ö Á¢±ÙÀÚ
+	// ë“±ë¡ëœ ì‚¬ëŒ ìˆ˜ ì ‘ê·¼ì
 	public int getCount() throws SQLException {
-		String getCountMsg = "select count(*)from adressinfo"; // tableÀÇ °¹¼ö¸¦ ¼¼´Â SQL¹®
+		String getCountMsg = "select count(*)from adressinfo"; // tableì˜ ê°¯ìˆ˜ë¥¼ ì„¸ëŠ” SQLë¬¸
 
 		rs = st.executeQuery(getCountMsg);
-		rs.next();// Ä¿¼­ ÀÌµ¿
-		int perCnt = rs.getInt(1); // °¹¼ö ÀĞ±â
+		rs.next();// ì»¤ì„œ ì´ë™
+		int perCnt = rs.getInt(1); // ê°¯ìˆ˜ ì½ê¸°
 
-		return perCnt;// °¹¼ö ¹İÈ¯
+		return perCnt;// ê°¯ìˆ˜ ë°˜í™˜
 	}
 
-	// µ¿¸íÀÌÀÎ È®ÀÎ ¸Ş¼Òµå
+	// ë™ëª…ì´ì¸ í™•ì¸ ë©”ì†Œë“œ
 	public boolean checkName(String name) throws Exception {
-		String checkNameMsg = "select *from adressinfo"; // table ÀüÃ¼ Ãâ·Â SQL¹®
+		String checkNameMsg = "select *from adressinfo"; // table ì „ì²´ ì¶œë ¥ SQLë¬¸
 
 		rs = st.executeQuery(checkNameMsg);
 		while (rs.next()) {
-			if (rs.getString("name").equals(name))// ÀÏÄ¡ÇÏ´Â ÀÌ¸§ÀÌ ÀÖ´Ù¸é
-				return true;// true ¹İÈ¯
+			if (rs.getString("name").equals(name))// ì¼ì¹˜í•˜ëŠ” ì´ë¦„ì´ ìˆë‹¤ë©´
+				return true;// true ë°˜í™˜
 		}
 
-		return false;// ÀÏÄ¡ÇÏ´Â ÀÌ¸§ ¾øÀ½
+		return false;// ì¼ì¹˜í•˜ëŠ” ì´ë¦„ ì—†ìŒ
 	}
 
-	// µî·ÏµÈ ÀüÈ­¹øÈ£°¡ ÀÖ´ÂÁö È®ÀÎ ¸Ş¼Òµå
+	// ë“±ë¡ëœ ì „í™”ë²ˆí˜¸ê°€ ìˆëŠ”ì§€ í™•ì¸ ë©”ì†Œë“œ
 	public boolean checkPhoneNum(String phoneNum) throws Exception {
-		String checkNameMsg = "select *from adressinfo";// table ÀüÃ¼ Ãâ·Â SQL¹®
+		String checkNameMsg = "select *from adressinfo";// table ì „ì²´ ì¶œë ¥ SQLë¬¸
 
 		rs = st.executeQuery(checkNameMsg);
 		while (rs.next()) {
-			if (rs.getString("phoneNum").equals(phoneNum))// ÀÏÄ¡ÇÏ´Â ÀüÈ­¹øÈ£°¡ ÀÖ´Ù¸é
-				return true;// true ¹İÈ¯
+			if (rs.getString("phoneNum").equals(phoneNum))// ì¼ì¹˜í•˜ëŠ” ì „í™”ë²ˆí˜¸ê°€ ìˆë‹¤ë©´
+				return true;// true ë°˜í™˜
 		}
 
-		return false;// ÀÏÄ¡ÇÏ´Â ÀüÈ­¹øÈ£ ¾øÀ½
+		return false;// ì¼ì¹˜í•˜ëŠ” ì „í™”ë²ˆí˜¸ ì—†ìŒ
 	}
 
-	// ÁÖ¼Ò·Ï µî·Ï ¸Ş¼Òµå
+	// ì£¼ì†Œë¡ ë“±ë¡ ë©”ì†Œë“œ
 	public void add(Person P) throws Exception {
 
-		st.executeUpdate(// table Çà Ãß°¡
+		st.executeUpdate(// table í–‰ ì¶”ê°€
 				"insert into adressinfo (name,sex,phoneNum,adress,email) values ('" + P.getName() + "','" + P.getSex()
 						+ "','" + P.getPhoneNum() + "','" + P.getAddress() + "','" + P.getEmail() + "');");
 
 	}
 
-	// ÀÌ¸§À¸·Î ÁÖ¼Ò·Ï ¹øÈ£ °Ë»ö ¸Ş¼Òµå, µî·ÏµÈ ÀÌ¸§ ¾øÀ» °æ¿ì ÀÍ¼Á¼Ç
+	// ì´ë¦„ìœ¼ë¡œ ì£¼ì†Œë¡ ë²ˆí˜¸ ê²€ìƒ‰ ë©”ì†Œë“œ, ë“±ë¡ëœ ì´ë¦„ ì—†ì„ ê²½ìš° ìµì…‰ì…˜
 	public int searchName(String name) throws Exception {
-		String searchNameMsg = "select *from adressinfo";// table ÀüÃ¼ Ãâ·Â SQL¹®
+		String searchNameMsg = "select *from adressinfo";// table ì „ì²´ ì¶œë ¥ SQLë¬¸
 
 		rs = st.executeQuery(searchNameMsg);
 		while (rs.next()) {
-			if (rs.getString("name").equals(name))// ÀÏÄ¡ÇÏ´Â ÀÌ¸§ÀÌ ÀÖÀ¸¸é
-				return rs.getInt(name);// ÇØ´ç ÇàÀ» Int·Î ¹İÈ¯
+			if (rs.getString("name").equals(name))// ì¼ì¹˜í•˜ëŠ” ì´ë¦„ì´ ìˆìœ¼ë©´
+				return rs.getInt(name);// í•´ë‹¹ í–‰ì„ Intë¡œ ë°˜í™˜
 		}
 
-		throw new Exception("µî·ÏµÈ name ¾øÀ½");
+		throw new Exception("ë“±ë¡ëœ name ì—†ìŒ");
 	}
 
-	// ÀüÈ­¹øÈ£·Î ÁÖ¼Ò·Ï ¹øÈ£ °Ë»ö ¸Ş¼Òµå, µî·ÏµÈ ÀüÈ­¹øÈ£ ¾øÀ» °æ¿ì ÀÍ¼Á¼Ç
+	// ì „í™”ë²ˆí˜¸ë¡œ ì£¼ì†Œë¡ ë²ˆí˜¸ ê²€ìƒ‰ ë©”ì†Œë“œ, ë“±ë¡ëœ ì „í™”ë²ˆí˜¸ ì—†ì„ ê²½ìš° ìµì…‰ì…˜
 	public int searchPhoneNum(String phoneNum) throws Exception {
-		String searchPhoneNumMsg = "select *from adressinfo";// table ÀüÃ¼ Ãâ·Â SQL¹®
+		String searchPhoneNumMsg = "select *from adressinfo";// table ì „ì²´ ì¶œë ¥ SQLë¬¸
 
 		rs = st.executeQuery(searchPhoneNumMsg);
 		while (rs.next()) {
-			if (rs.getString("phoneNum").equals(phoneNum))// ÀÏÄ¡ÇÏ´Â ÀüÈ­¹øÈ£°¡ ÀÖÀ¸¸é
-				return rs.getInt(phoneNum);// ÇØ´ç ÇàÀ» Int·Î ¹İÈ¯
+			if (rs.getString("phoneNum").equals(phoneNum))// ì¼ì¹˜í•˜ëŠ” ì „í™”ë²ˆí˜¸ê°€ ìˆìœ¼ë©´
+				return rs.getInt(phoneNum);// í•´ë‹¹ í–‰ì„ Intë¡œ ë°˜í™˜
 		}
 
-		throw new Exception("µî·ÏµÈ phoneNum ¾øÀ½");
+		throw new Exception("ë“±ë¡ëœ phoneNum ì—†ìŒ");
 	}
 
-	// ÀÌ¸§À¸·Î ÁÖ¼Ò·Ï ¹øÈ£ °Ë»ö ¸Ş¼Òµå2, ÀÔ·ÂÇÑ ¹®ÀÚ¸¦ Æ÷ÇÔÇÏ´Â µ¥ÀÌÅÍ¸¦ °Ë»çÇÏ´Â °æ¿ì
+	// ì´ë¦„ìœ¼ë¡œ ì£¼ì†Œë¡ ë²ˆí˜¸ ê²€ìƒ‰ ë©”ì†Œë“œ2, ì…ë ¥í•œ ë¬¸ìë¥¼ í¬í•¨í•˜ëŠ” ë°ì´í„°ë¥¼ ê²€ì‚¬í•˜ëŠ” ê²½ìš°
 	public Person searchNameWith(String name, int index) throws Exception {
 		String searchWithMsg = "select * from adressinfo where name like '%" + name + "%';";
 
@@ -109,7 +109,7 @@ public class AddressBook {
 				String getAdress = rs.getString("adress");
 				String getEmail = rs.getString("email");
 
-				// Person °´Ã¼ p¸¦ »ı¼ºÇØÁÖ¾î ¹®ÀÚ Æ÷ÇÔ µ¥ÀÌÅÍµéÀÇ Çà °ªµéÀ» ³Ö¾îÁÜ
+				// Person ê°ì²´ pë¥¼ ìƒì„±í•´ì£¼ì–´ ë¬¸ì í¬í•¨ ë°ì´í„°ë“¤ì˜ í–‰ ê°’ë“¤ì„ ë„£ì–´ì¤Œ
 				Person p = new Person(getName, getphonNum, getAdress, getEmail, getSex);
 
 				return p;
@@ -117,28 +117,28 @@ public class AddressBook {
 			}
 		}
 
-		throw new Exception("searchNameWith ¿¹¿Ü");
+		throw new Exception("searchNameWith ì˜ˆì™¸");
 	}
 
-	// ÁÖ¼Ò·Ï ¼öÁ¤ ¸Ş¼Òµå
+	// ì£¼ì†Œë¡ ìˆ˜ì • ë©”ì†Œë“œ
 	public void modify(String name, Person P) throws Exception {
-		// table Á¤º¸ ¼öÁ¤
+		// table ì •ë³´ ìˆ˜ì •
 		st.executeUpdate("update adressinfo set name='" + P.getName() + "', " + "sex='" + P.getSex() + "', "
 				+ "phoneNum='" + P.getPhoneNum() + "', " + "adress='" + P.getAddress() + "', " + "email='"
 				+ P.getEmail() + "'" + " where name='" + name + "';");
 	}
 
-	// ÁÖ¼Ò·Ï »èÁ¦ ¸Ş¼Òµå
+	// ì£¼ì†Œë¡ ì‚­ì œ ë©”ì†Œë“œ
 	public void delete(String name) throws SQLException {
 		String deleteMsg = "delete from adressinfo where name ='" + name + "';";
-		// table Çà »èÁ¦
+		// table í–‰ ì‚­ì œ
 		st.execute(deleteMsg);
 
 	}
 
-	// Person °´Ã¼ ³Ñ°ÜÁÖ´Â ¸Ş¼Òµå
+	// Person ê°ì²´ ë„˜ê²¨ì£¼ëŠ” ë©”ì†Œë“œ
 	public Person getPerson(int index) throws Exception {
-		String getCountMsg = "select *from adressinfo";// table ÀüÃ¼ Á¤º¸ Ãâ·Â
+		String getCountMsg = "select *from adressinfo";// table ì „ì²´ ì •ë³´ ì¶œë ¥
 
 		rs = st.executeQuery(getCountMsg);
 		while (rs.next()) {
@@ -149,18 +149,18 @@ public class AddressBook {
 				String getAdress = rs.getString("adress");
 				String getEmail = rs.getString("email");
 
-				// PersonÀÇ °´Ã¼ p¸¦ »ı¼ºÇÏ¿© ¸ğµç ÇàµéÀÇ °ªµéÀ» ³Ö¾îÁÜ
+				// Personì˜ ê°ì²´ pë¥¼ ìƒì„±í•˜ì—¬ ëª¨ë“  í–‰ë“¤ì˜ ê°’ë“¤ì„ ë„£ì–´ì¤Œ
 				Person p = new Person(getName, getphonNum, getAdress, getEmail, getSex);
 
 				return p;
 			}
 		}
 
-		throw new Exception("getPerson¿À·ù");
+		throw new Exception("getPersonì˜¤ë¥˜");
 
 	}
 
-	// DB¸¦ ´İ¾ÆÁÖ´Â ¸Ş¼Òµå
+	// DBë¥¼ ë‹«ì•„ì£¼ëŠ” ë©”ì†Œë“œ
 	public void closeDB() throws Exception {
 		rs.close();
 		st.close();
